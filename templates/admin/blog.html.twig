@@ -1,0 +1,55 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+{% block section %} Blog {% endblock %}
+{% block body %}
+<section class="content">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">List portfolio items</h3>
+          <div class="card-tools">
+            <div class="input-group ">
+              <a class="btn btn-sm btn-block btn-primary" href="{{ path('addBlogPostItem') }}"> Add new item</a>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-head-fixed text-nowrap">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Flag</th>
+                <th>Creation date</th>
+                <th>End date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for   blogItem in  listBlogtDashboard %}
+              <tr>
+                <td><a href="{{path('updateBlogPostItem', {'id':  blogItem.id})}}">{{  blogItem.title}}</a></td>
+                <td>{{  blogItem.description | striptags | u.truncate(70, '...')}}</td>
+                <td>{{  blogItem.flag}}</td>
+                <td>{{  blogItem.createdAt.format('d/m/Y')}}</td>
+                <td>{{  blogItem.deprecatedAt.format('d/m/Y')}}</td>
+                <td><a href="{{path('deleteBlogPostItem', {'id':  blogItem.id})}}" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="7">no records found</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+</section>
+{% endblock %}

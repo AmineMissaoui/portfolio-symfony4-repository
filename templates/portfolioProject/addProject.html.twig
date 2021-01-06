@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block title %} Add Project {% endblock %}
+{% block body %}
+    
+{#{{form(formProject)}}#}
+    <div class="row justify-content-center mt-5">
+    <div class="col-lg-8">
+    {{ form_start(formProject) }}
+    <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">{{ form_label(formProject.title, 'title') }}</label>
+    {{ form_widget(formProject.title, {'attr': {'class': 'form-control'}}) }}
+  </div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">{{ form_label(formProject.category, 'category') }}</label>
+    {{ form_widget(formProject.category, {'attr': {'class': 'form-control'}}) }}
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">{{ form_label(formProject.description, 'description') }}</label>
+    {{ form_widget(formProject.description, {'attr': {'class': 'form-control'}}) }}
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">{{ form_label(formProject.creationDate, 'Creation Date') }}</label>
+    {{ form_widget(formProject.creationDate, {'attr': {'class': 'form-control'}}) }}
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">{{ form_label(formProject.link, 'link') }}</label>
+    {{ form_widget(formProject.link, {'attr': {'class': 'form-control'}}) }}
+  </div>
+    <div class="form-group">
+    <label for="exampleInputPassword1">{{ form_label(formProject.client, 'client') }}</label>
+    {{ form_widget(formProject.client, {'attr': {'class': 'form-control'}}) }}
+  </div>
+  <div class="input-group mb-3">
+  <div class="custom-file">
+    {{ form_widget(formProject.upload, {'attr':  {'class': 'custom-file-input'}}) }}
+    <label class="custom-file-label">Choose file</label>
+  </div>
+</div>
+  {{ form_widget(formProject.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+</form>
+  {{ form_end(formProject) }}  
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ project.title }} {% endblock %}
+{% block section %} {{ project.title }} {% endblock %}
+{% block body %}
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 mb-5">
+        <div class="col-lg-10 mx-auto detail-project-slider">
+          {% for image in project.portfolioImages %}
+
+          <div class="text-center testimonial-content">
+            <img src="{{ asset('/uploads/' ~ image.name  ) }}" alt="portfolio-image"
+              class="img-fluid rounded w-100 d-block">
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-lg-7 mb-5 mb-lg-0 align-self-center">
+        <div class="row mx-0">
+          <div class="col-sm-6 mb-5">
+            <div class="project-meta">
+              <i class="ti-calendar"></i>
+              <div class="ml-3">
+                <h4>Date</h4>
+                <p> {{project.creationDate.format('d/m/Y')}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-5">
+            <div class="project-meta">
+              <i class="ti-user"></i>
+              <div class="ml-3">
+                <h4>Client</h4>
+                <p>{{project.client}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-5">
+            <div class="project-meta">
+              <i class="ti-folder"></i>
+              <div class="ml-3">
+                <h4>Categories</h4>
+                <p>{{project.category}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-5">
+            <div class="project-meta">
+              <i class="ti-link"></i>
+              <div class="ml-3">
+                <h4>Project Link</h4>
+                <p><a href="{{project.link}}" target="_blank">{{project.link}}</a></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="content"><p class="text-justify">{{project.description}}</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

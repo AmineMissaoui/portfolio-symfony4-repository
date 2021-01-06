@@ -1,0 +1,16 @@
+      {% for blog in listBlogHome %}
+      <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+        <article class="card shadow">
+          <img class="rounded card-img-top" src="{{ asset('/uploads/' ~ blog.blogPostImage  ) }}" alt="post-thumb">
+          <div class="card-body">
+              <h4 class="card-title"><a class="text-dark" href="blog-single.html">{{ blog.title }}</a>
+              <small>
+                {{ blog.createdAt ? blog.createdAt|date('d/m/Y') : '' }}
+              </small>
+              </h4>
+              <p class="cars-text">{{ blog.description | striptags | u.truncate(150, '...' ) }}</p>
+              <a class="btn btn-xs btn-primary" href="{{ path('blogDetail', {'id': blog.id}) }}">Lire plus</a>
+          </div>
+        </article>
+      </div>
+      {% endfor %}

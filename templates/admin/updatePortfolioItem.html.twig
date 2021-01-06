@@ -1,0 +1,94 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+{% block section %} Update portfolio item {% endblock %}
+{% block body %}
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          {{ form_start(formProject) }}
+          <form>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">{{ form_label(formProject.title, 'title') }}</label>
+                    {{ form_widget(formProject.title, {'attr': {'class': 'form-control'}}) }}
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">{{ form_label(formProject.category, 'category') }}</label>
+                    {{ form_widget(formProject.category, {'attr': {'class': 'form-control'}}) }}
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label>{{ form_label(formProject.creationDate, 'Creation Date') }}</label>
+                    {{ form_widget(formProject.creationDate, {'attr': {'class': 'form-control js-datepicker'}}) }}
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label>{{ form_label(formProject.link, 'link') }}</label>
+                    {{ form_widget(formProject.link, {'attr': {'class': 'form-control'}}) }}
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label>{{ form_label(formProject.client, 'client') }}</label>
+                    {{ form_widget(formProject.client, {'attr': {'class': 'form-control'}}) }}
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group mb-3">
+                    <label>{{ form_label(formProject.upload, 'Upload') }}</label>
+                    <div class="custom-file">
+                      {{ form_widget(formProject.upload, {'attr':  {'class': 'custom-file-input'}}) }}
+                      <label class="custom-file-label">Choose file</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12">
+
+                  <div class="row">
+                  {% if Project.portfolioImages is defined %}
+                    {% for image in Project.portfolioImages %}
+                    <div class="col-lg-2">
+                    <img src="{{ asset('/uploads/' ~ image.name  ) }}" alt="portfolio-image"
+                      class="m-2 h-auto w-100">
+                    <a href="{{ path('deleteImage', {'id': image.id})}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                  </div>
+
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label>{{ form_label(formProject.description, 'description') }}</label>
+                    {{ form_widget(formProject.description, {'attr': {'class': 'form-control'}}) }}
+                  </div>
+                </div>
+                <div class="col-lg-6 offset-lg-6">
+                  <div class="form-group d-flex justify-content-end">
+                    {{ form_widget(formProject.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          {{ form_end(formProject) }}
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section>
+{% endblock %}

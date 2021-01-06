@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Blog {% endblock %}
+
+{% block section %} Blog {% endblock %}
+
+{% block body %}
+    {# <h1>BlogPost index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>CreatedAt</th>
+                <th>DeprecatedAt</th>
+                <th>Flag</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blog_post in blog_posts %}
+            <tr>
+                <td>{{ blog_post.id }}</td>
+                <td></td>
+                <td></td>
+                <td>{{ blog_post.createdAt ? blog_post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ blog_post.deprecatedAt ? blog_post.deprecatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ blog_post.flag }}</td>
+                <td>
+                    <a href="{{ path('blogDetail', {'id': blog_post.id}) }}">show</a>
+                    <a href="{{ path('blog_post_edit', {'id': blog_post.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('blog_post_new') }}">Create new</a> #}
+
+    
+<section class="section">
+  <div class="container">
+    <div class="row">
+    {% for blog_post in blog_posts %}
+        <div class="col-lg-4 col-sm-6 mb-4">
+          <article class="card shadow">
+            <img src="{{ asset('/uploads/' ~ blog_post.blogPostImage  ) }}" alt="post-thumb" class="rounded card-img-top">
+            <div class="card-body">
+              <h4 class="card-title"><a class="text-dark" href="blog-single.html">{{ blog_post.title }}</a>
+              <small>
+                {{ blog_post.createdAt ? blog_post.createdAt|date('d/m/Y') : '' }}
+              </small>
+              </h4>
+              <p class="cars-text">{{ blog_post.description | striptags | u.truncate(150, '...' ) }}</p>
+              <a class="btn btn-xs btn-primary" href="{{ path('blogDetail', {'id': blog_post.id}) }}">Lire plus</a>
+            </div>
+          </article>
+        </div>
+    {% else %}
+    <div class="col-lg-12 text-center"> No posts available </div>
+    {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
