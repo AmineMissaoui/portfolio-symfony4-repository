@@ -28,7 +28,7 @@
       <div class="col-lg-12">
         <h4 class="font-weight-bold mb-3">Comments 03</h4>
         <div class="bg-gray p-5 mb-4">
-          <div class="media border-bottom py-4">
+          {# <div class="media border-bottom py-4">
             <img src="images/user-1.jpg" class="img-fluid align-self-start rounded-circle mr-3" alt="">
             <div class="media-body">
               <h5 class="mt-0">Carole Marvin.</h5>
@@ -47,7 +47,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> #}
           <div class="media py-4">
             <img src="images/user-3.jpg" class="img-fluid align-self-start rounded-circle mr-3" alt="">
             <div class="media-body">
@@ -60,6 +60,7 @@
           </div>
         </div>
         <h4 class="font-weight-bold mb-3 border-bottom pb-3">Leave a Comment</h4>
+        {{ form_start(commentForm , {'attr':  {'class': 'row'}} ) }}
         <form action="#" class="row">
           <div class="col-md-6">
             <input type="text" class="form-control mb-3" placeholder="First Name" name="fname" id="fname">
@@ -67,10 +68,12 @@
             <input type="text" class="form-control mb-3" placeholder="Email *" name="mail" id="mail">
           </div>
           <div class="col-md-6">
-            <textarea name="comment" id="comment" placeholder="Message" class="form-control mb-4"></textarea>
-            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+          {{ form_widget(commentForm.content, {'attr':  {'class': 'form-control mb-4','placeholder' : 'Message'}}) }}
+          {{ form_widget(commentForm.submit, {'attr':  {'class': 'btn btn-primary w-100'}}) }}
+            {# <button type="submit" class="btn btn-primary w-100">Send Message</button> #}
           </div>
         </form>
+        {{ form_end(commentForm) }}
       </div>
     </div>
   </div>

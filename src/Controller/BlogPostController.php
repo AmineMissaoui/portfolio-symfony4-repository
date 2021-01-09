@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\BlogPost;
+use App\Entity\BlogPostComment;
+use App\Form\BlogPostCommentType;
 use App\Form\BlogPostType;
 use App\Repository\BlogPostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,12 +28,27 @@ class BlogPostController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="blogDetail", methods={"GET"})
+     * @Route("/{id}", name="blogDetail", methods={"GET","POST"})
      */
-    public function show(BlogPost $blogPost): Response
+    public function show(BlogPost $blogPost, Request $request): Response
     {
+        $blogPostComment = new BlogPostComment();
+        $form = $this->createForm(BlogPostCommentType::class, $blogPostComment);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            $blogPostComment->setEnabled('yes');
+            $blogPostComment->setBlogPost($blogPost);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($blogPostComment);
+            $entityManager->flush();
+            return $this->redirectToRoute('blog');
+
+        }
+        
         return $this->render('blog_post/blogDetail.html.twig', [
             'blog_post' => $blogPost,
+            'commentForm' => $form->createView()
         ]);
     }
 
