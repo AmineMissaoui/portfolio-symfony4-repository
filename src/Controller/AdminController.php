@@ -51,7 +51,8 @@ class AdminController extends AbstractController
         $PortfolioProject = new PortfolioProject();
         $formProject = $this->createForm(PortfolioFormType::class,$PortfolioProject);
         $formProject->handleRequest($request);
-        if($formProject->isSubmitted() and $formProject->isValid()){
+        if($formProject->isSubmitted() and !$formProject->isValid()){
+            dump((string) $formProject->getErrors(true, false));die;
             $images = $formProject->get('upload')->getData();
             foreach($images as $image){
                 //pour gere le nom du fichier
@@ -69,7 +70,8 @@ class AdminController extends AbstractController
             $em=$this->getDoctrine()->getManager();
             $em->persist($PortfolioProject);
             $em->flush();
-            return $this->redirectToRoute("addPortfolioProject");
+            
+            return $this->redirectToRoute("portfolioDasboard");
         }
         return $this->render("/admin/addPortfolioItem.html.twig",array('formProject'=>$formProject->createView()));
     }

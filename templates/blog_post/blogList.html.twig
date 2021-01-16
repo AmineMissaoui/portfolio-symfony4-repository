@@ -5,7 +5,7 @@
 {% block section %} Blog {% endblock %}
 
 {% block body %}
-    {# <h1>BlogPost index</h1>
+{# <h1>BlogPost index</h1>
 
     <table class="table">
         <thead>
@@ -42,29 +42,30 @@
     </table>
 
     <a href="{{ path('blog_post_new') }}">Create new</a> #}
-
-    
 <section class="section">
   <div class="container">
     <div class="row">
-    {% for blog_post in blog_posts %}
-        <div class="col-lg-4 col-sm-6 mb-4">
-          <article class="card shadow">
-            <img src="{{ asset('/uploads/' ~ blog_post.blogPostImage  ) }}" alt="post-thumb" class="rounded card-img-top">
-            <div class="card-body">
-              <h4 class="card-title"><a class="text-dark" href="blog-single.html">{{ blog_post.title }}</a>
+      {% for blog_post in blog_posts %}
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <article class="card shadow">
+          <img src="{{ asset('/uploads/' ~ blog_post.blogPostImage  ) }}" alt="post-thumb" class="rounded card-img-top">
+          <div class="card-body">
+            <h4 class="card-title"><a class="text-dark" href="blog-single.html">{{ blog_post.title }}</a>
               <small>
                 {{ blog_post.createdAt ? blog_post.createdAt|date('d/m/Y') : '' }}
               </small>
-              </h4>
-              <p class="cars-text">{{ blog_post.description | striptags | u.truncate(150, '...' ) }}</p>
-              <a class="btn btn-xs btn-primary" href="{{ path('blogDetail', {'id': blog_post.id}) }}">Lire plus</a>
-            </div>
-          </article>
-        </div>
-    {% else %}
-    <div class="col-lg-12 text-center"> No posts available </div>
-    {% endfor %}
+            </h4>
+            <p class="cars-text">{{ blog_post.description | striptags | u.truncate(150, '...' ) }}</p>
+            <a class="btn btn-xs btn-primary" href="{{ path('blogDetail', {'id': blog_post.id}) }}">Lire plus</a>
+          </div>
+        </article>
+      </div>
+      {% else %}
+      <div class="col-lg-12 text-center"> No posts available </div>
+      {% endfor %}
+    </div>
+    <div class="row">
+      <div class="col-lg-12 text-center"> {{ knp_pagination_render(blog_posts) }} </div>
     </div>
   </div>
 </section>

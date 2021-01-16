@@ -7,6 +7,7 @@ use App\Entity\BlogPostComment;
 use App\Form\BlogPostCommentType;
 use App\Form\BlogPostType;
 use App\Repository\BlogPostRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,10 +21,14 @@ class BlogPostController extends AbstractController
     /**
      * @Route("/", name="blog", methods={"GET"})
      */
-    public function index(BlogPostRepository $blogPostRepository): Response
+    public function index(BlogPostRepository $blogPostRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $Blog = $paginator->paginate(
+            $blogPostRepository->findAll(), // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), 6 // Nombre de résultats par page
+        );
         return $this->render('blog_post/blogList.html.twig', [
-            'blog_posts' => $blogPostRepository->findAll(),
+            'blog_posts' => $Blog,
         ]);
     }
 

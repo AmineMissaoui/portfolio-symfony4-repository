@@ -38,9 +38,6 @@
                   <div class="form-group">
                     <label>{{ form_label( formBlog.deprecatedAt, 'End date') }}</label>
                     {{ form_widget( formBlog.deprecatedAt, {'attr': {'class': 'form-control js-datepicker'}}) }}
-                    <div class="not-valide">
-                      {{form_errors(formBlog.deprecatedAt)}}
-                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">

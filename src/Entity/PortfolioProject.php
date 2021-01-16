@@ -52,13 +52,11 @@ class PortfolioProject
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="PortfolioProject")
-     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $category;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Date(message="Champ invalide !")
      */
     private $creationDate;
 
