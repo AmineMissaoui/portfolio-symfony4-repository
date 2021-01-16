@@ -33,9 +33,9 @@ class PortfolioFormType extends AbstractType
                 'mapped' => false,
                 'required' => false
             ])
-            ->add('submit',SubmitType::class)
-            // ->add('submit',SubmitType::class,
-            //          ['attr'=>['formnovalidate'=>'formnovalidate']])
+            // ->add('submit',SubmitType::class)
+            ->add('submit',SubmitType::class,
+                     ['attr'=>['formnovalidate'=>'formnovalidate']])
 
         ;
     }

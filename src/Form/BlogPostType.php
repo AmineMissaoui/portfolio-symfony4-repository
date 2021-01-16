@@ -37,7 +37,9 @@ class BlogPostType extends AbstractType
                 'required' => false
             ])
             ->add('blogPostCategory')
-            ->add('submit',SubmitType::class)
+            // ->add('submit',SubmitType::class)
+            ->add('submit',SubmitType::class,
+            ['attr'=>['formnovalidate'=>'formnovalidate']])
         ;
     }
 

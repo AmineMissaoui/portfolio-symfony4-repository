@@ -6,6 +6,42 @@
 <section class="content">
   <div class="row">
     <div class="col-12">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header bg-white">
+          <h3 class="card-title">Recherche</h3>
+        </div>
+        <form role="form">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="searchTitle">Titre</label>
+                  <input type="text" class="form-control" id="searchTitle" placeholder="">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="searchContenue">Contenue</label>
+                  <input type="text" class="form-control" id="searchContenue" placeholder="">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="searchClient">Flag</label>
+                  <input type="text" class="form-control" id="searchClient" placeholder="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+      <!-- /.card -->
+    </div>
+    <div class="col-12">
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">List portfolio items</h3>
@@ -36,7 +72,8 @@
                 <td>{{  blogItem.flag}}</td>
                 <td>{{  blogItem.createdAt.format('d/m/Y')}}</td>
                 <td>{{  blogItem.deprecatedAt.format('d/m/Y')}}</td>
-                <td><a href="{{path('deleteBlogPostItem', {'id':  blogItem.id})}}" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
+                <td><a href="{{path('deleteBlogPostItem', {'id':  blogItem.id})}}" class="btn btn-danger"><i
+                      class="fas fa-trash"></i></a></td>
               </tr>
               {% else %}
               <tr>

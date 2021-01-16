@@ -6,6 +6,7 @@ use App\Repository\BlogPostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BlogPostRepository::class)
@@ -21,21 +22,25 @@ class BlogPost
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $description;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $deprecatedAt;
 
@@ -93,24 +98,24 @@ class BlogPost
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt($createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getDeprecatedAt(): ?\DateTimeInterface
+    public function getDeprecatedAt()
     {
         return $this->deprecatedAt;
     }
 
-    public function setDeprecatedAt(\DateTimeInterface $deprecatedAt): self
+    public function setDeprecatedAt($deprecatedAt): self
     {
         $this->deprecatedAt = $deprecatedAt;
 

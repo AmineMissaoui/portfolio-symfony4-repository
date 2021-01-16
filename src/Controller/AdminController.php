@@ -7,6 +7,8 @@ use App\Entity\PortfolioImages;
 use App\Entity\PortfolioProject;
 use App\Form\BlogPostType;
 use App\Form\PortfolioFormType;
+use App\Form\SearchPortfolioProjectType;
+use App\Repository\PortfolioProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,10 +31,17 @@ class AdminController extends AbstractController
     /**
      * @Route("/portfolio", name="portfolioDasboard")
      */
-    public function listPortfolioProjectDashboard()
+    public function listPortfolioProjectDashboard(Request $request)
     {
         $Project=$this->getDoctrine()->getRepository(PortfolioProject::class)->findAll();
-        return $this->render("/admin/portfolio.html.twig",array('listProjectDashboard'=>$Project));
+        $searchPortfolio = $this->createForm(SearchPortfolioProjectType::class);
+        $searchPortfolio->handleRequest($request);
+        if($searchPortfolio->isSubmitted()){
+            $title= $searchPortfolio->getData()->getTitle();
+            $SearchPortfolioByName = $this->getDoctrine()->getRepository(PortfolioProject::class)->searchByTitle($title);
+            return $this->render("/admin/portfolio.html.twig",array('listProjectDashboard'=>$SearchPortfolioByName,'searchPortfolio'=>$searchPortfolio->createView()));
+        }
+        return $this->render("/admin/portfolio.html.twig",array('listProjectDashboard'=>$Project,'searchPortfolio'=>$searchPortfolio->createView()));
     }
     /**
      * @Route("/addPortfolioProject", name="addPortfolioProject")
@@ -42,7 +51,7 @@ class AdminController extends AbstractController
         $PortfolioProject = new PortfolioProject();
         $formProject = $this->createForm(PortfolioFormType::class,$PortfolioProject);
         $formProject->handleRequest($request);
-        if($formProject->isSubmitted()){
+        if($formProject->isSubmitted() and $formProject->isValid()){
             $images = $formProject->get('upload')->getData();
             foreach($images as $image){
                 //pour gere le nom du fichier
@@ -113,7 +122,7 @@ class AdminController extends AbstractController
         $form = $this->createForm(BlogPostType::class, $blogPost);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() and $form->isValid()) {
             $image = $form->get('upload')->getData();
             //pour gere le nom du fichier
             $fichier = md5(uniqid()) . '.' . $image->guessExtension();

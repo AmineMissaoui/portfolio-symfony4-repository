@@ -22,44 +22,43 @@ class PortfolioProject
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="erreur!")
+     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="erreur!")
+     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $description;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="erreur!")
+     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $link;
 
 
     /**
      * @ORM\OneToMany(targetEntity=PortfolioImages::class, mappedBy="PortfolioProject", orphanRemoval=true, cascade={"persist"})
-     * @Assert\NotBlank(message="erreur!")
      */
     private $portfolioImages;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="erreur!")
+     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $client;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="PortfolioProject")
-     * @Assert\NotBlank(message="erreur!")
+     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $category;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Date(message="erreur date!")
+     * @Assert\Date(message="Champ invalide !")
      */
     private $creationDate;
 
@@ -170,7 +169,7 @@ class PortfolioProject
         return $this->creationDate;
     }
 
-    public function setCreationDate( $creationDate): self
+    public function setCreationDate($creationDate): self
     {
         $this->creationDate = $creationDate;
 

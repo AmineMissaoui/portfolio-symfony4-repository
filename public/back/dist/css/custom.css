@@ -1,0 +1,7 @@
+.not-valid ul{
+    padding: 0 !important;
+}
+.not-valid ul li{
+    list-style: none;
+    color: red;
+}

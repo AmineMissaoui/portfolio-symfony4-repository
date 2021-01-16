@@ -47,4 +47,12 @@ class PortfolioProjectRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function searchByTitle($title)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.title LIKE :title')
+            ->setParameter('title' , '%'.$title.'%')
+            ->getQuery()->getResult();
+    }
 }

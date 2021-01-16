@@ -6,6 +6,32 @@
 <section class="content">
   <div class="row">
     <div class="col-12">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header bg-white">
+          <h3 class="card-title">Recherche</h3>
+        </div>
+        {{ form_start( searchPortfolio ) }}
+        <form role="form">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">{{ form_label( searchPortfolio.title, 'Title') }}</label>
+                  {{ form_widget( searchPortfolio.title, {'attr': {'class': 'form-control'}}) }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-end">
+             {{ form_widget( searchPortfolio.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+          </div>
+        </form>
+        {{ form_end( searchPortfolio ) }}
+      </div>
+      <!-- /.card -->
+    </div>
+    <div class="col-12">
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">List portfolio items</h3>
@@ -34,7 +60,8 @@
                 <td>{{project.description | u.truncate(70, '...')}}</td>
                 <td>{{project.client}}</td>
                 <td>{{project.creationDate.format('d/m/Y')}}</td>
-                <td><a href="{{path('deletePortfolioProject', {'id':project.id})}}" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
+                <td><a href="{{path('deletePortfolioProject', {'id':project.id})}}" class="btn btn-danger"><i
+                      class="fas fa-trash"></i></a></td>
               </tr>
               {% else %}
               <tr>

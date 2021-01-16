@@ -12,7 +12,7 @@
         <!-- general form elements -->
         <div class="card card-primary">
 
-          {{ form_start(formProject) }}
+          {{ form_start(formProject, {'attr': {'novalidate': 'novalidate'}}) }}
           <form>
             <div class="card-body">
               <div class="row">
@@ -20,38 +20,50 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">{{ form_label(formProject.title, 'title') }}</label>
                     {{ form_widget(formProject.title, {'attr': {'class': 'form-control'}}) }}
-                    
+                    <div class="not-valide">
+                      {{form_errors(formProject.title)}}
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label for="exampleInputEmail1">{{ form_label(formProject.category, 'category') }}</label>
                     {{ form_widget(formProject.category, {'attr': {'class': 'form-control'}}) }}
-                    
+                    <div class="not-valide">
+                      {{form_errors(formProject.category)}}
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label>{{ form_label(formProject.creationDate, 'Creation Date') }}</label>
                     {{ form_widget(formProject.creationDate, {'attr': {'class': 'form-control js-datepicker'}}) }}
-                    
+                    <div class="not-valide">
+                      {{form_errors(formProject.creationDate)}}
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label  >{{ form_label(formProject.link, 'link') }}</label>
+                    <label>{{ form_label(formProject.link, 'link') }}</label>
                     {{ form_widget(formProject.link, {'attr': {'class': 'form-control'}}) }}
+                    <div class="not-valide">
+                      {{form_errors(formProject.link)}}
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label  >{{ form_label(formProject.client, 'client') }}</label>
+                    <label>{{ form_label(formProject.client, 'client') }}</label>
                     {{ form_widget(formProject.client, {'attr': {'class': 'form-control'}}) }}
+                    <div class="not-valide">
+                      {{form_errors(formProject.description)}}
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group mb-3">
-                  <label  >{{ form_label(formProject.upload, 'Upload') }}</label>
+                    <label>{{ form_label(formProject.upload, 'Upload') }}</label>
                     <div class="custom-file">
                       {{ form_widget(formProject.upload, {'attr':  {'class': 'custom-file-input'}}) }}
                       <label class="custom-file-label">Choose file</label>
@@ -60,8 +72,11 @@
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group">
-                    <label  >{{ form_label(formProject.description, 'description') }}</label>
+                    <label>{{ form_label(formProject.description, 'description') }}</label>
                     {{ form_widget(formProject.description, {'attr': {'class': 'form-control'}}) }}
+                    <div class="not-valide">
+                      {{form_errors(formProject.description)}}
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6 offset-lg-6">
@@ -73,7 +88,7 @@
             </div>
           </form>
           {{ form_end(formProject) }}
-          
+
         </div>
       </div>
     </div>

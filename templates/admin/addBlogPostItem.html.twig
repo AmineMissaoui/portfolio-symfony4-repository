@@ -7,12 +7,12 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-      <!-- left column -->
+
       <div class="col-md-12">
         <!-- general form elements -->
         <div class="card card-primary">
 
-          {{ form_start( formBlog) }}
+          {{ form_start( formBlog , {'attr': {'novalidate': 'novalidate'}}) }}
           <form>
             <div class="card-body">
               <div class="row">
@@ -20,24 +20,36 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">{{ form_label( formBlog.title, 'title') }}</label>
                     {{ form_widget( formBlog.title, {'attr': {'class': 'form-control'}}) }}
+                    <div class="not-valide">
+                      {{form_errors(formBlog.title)}}
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label>{{ form_label( formBlog.createdAt, 'Creation Date') }}</label>
                     {{ form_widget( formBlog.createdAt, {'attr': {'class': 'form-control js-datepicker'}}) }}
+                    <div class="not-valide">
+                      {{form_errors(formBlog.createdAt)}}
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label>{{ form_label( formBlog.deprecatedAt, 'End date') }}</label>
                     {{ form_widget( formBlog.deprecatedAt, {'attr': {'class': 'form-control js-datepicker'}}) }}
+                    <div class="not-valide">
+                      {{form_errors(formBlog.deprecatedAt)}}
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label>{{ form_label( formBlog.blogPostCategory, 'Category') }}</label>
                     {{ form_widget( formBlog.blogPostCategory, {'attr': {'class': 'form-control'}}) }}
+                    <div class="not-valide">
+                      {{form_errors(formBlog.blogPostCategory)}}
+                    </div>                    
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -53,6 +65,9 @@
                   <div class="form-group">
                     <label>{{ form_label( formBlog.description, 'description') }}</label>
                     {{ form_widget( formBlog.description, {'attr': {'class': 'form-control'}}) }}
+                    <div class="not-valide">
+                      {{form_errors(formBlog.blogPostCategory)}}
+                    </div>                        
                   </div>
                 </div>
                 <div class="col-lg-6 offset-lg-6">
