@@ -51,8 +51,7 @@ class AdminController extends AbstractController
         $PortfolioProject = new PortfolioProject();
         $formProject = $this->createForm(PortfolioFormType::class,$PortfolioProject);
         $formProject->handleRequest($request);
-        if($formProject->isSubmitted() and !$formProject->isValid()){
-            dump((string) $formProject->getErrors(true, false));die;
+        if($formProject->isSubmitted() && $formProject->isValid()){
             $images = $formProject->get('upload')->getData();
             foreach($images as $image){
                 //pour gere le nom du fichier

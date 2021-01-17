@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BlogPostCommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BlogPostCommentRepository::class)
@@ -19,6 +20,7 @@ class BlogPostComment
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $content;
 

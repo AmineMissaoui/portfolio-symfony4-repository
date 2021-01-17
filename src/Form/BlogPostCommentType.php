@@ -15,7 +15,9 @@ class BlogPostCommentType extends AbstractType
     {
         $builder
             ->add('content',TextareaType::class)
-            ->add('submit',SubmitType::class)
+            // ->add('submit',SubmitType::class)
+            ->add('submit',SubmitType::class,
+            ['attr'=>['formnovalidate'=>'formnovalidate']])
         ;
     }
 

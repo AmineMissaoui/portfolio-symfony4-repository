@@ -65,7 +65,8 @@
           {% endfor %}
         </div>
         <h4 class="font-weight-bold mb-3 border-bottom pb-3">Leave a Comment</h4>
-        {{ form_start(commentForm , {'attr':  {'class': 'row'}} ) }}
+        {{ form_start(commentForm , {'attr':  {'class': 'row', 'novalidate': 'novalidate'}} ) }} 
+        {{ form_row(commentForm._token) }}
         <form action="#" class="row">
           <div class="col-md-6">
             <input type="text" class="form-control mb-3" placeholder="First Name" name="fname" id="fname">
@@ -74,6 +75,7 @@
           </div>
           <div class="col-md-6">
             {{ form_widget(commentForm.content, {'attr':  {'class': 'form-control mb-4','placeholder' : 'Message'}}) }}
+            {{form_errors(commentForm.content)}}
             {{ form_widget(commentForm.submit, {'attr':  {'class': 'btn btn-primary w-100'}}) }}
             {# <button type="submit" class="btn btn-primary w-100">Send Message</button> #}
           </div>

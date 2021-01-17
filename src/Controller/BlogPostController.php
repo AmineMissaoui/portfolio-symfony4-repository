@@ -41,7 +41,7 @@ class BlogPostController extends AbstractController
         $form = $this->createForm(BlogPostCommentType::class, $blogPostComment);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
             $blogPostComment->setEnabled('yes');
             $blogPostComment->setBlogPost($blogPost);
             $entityManager = $this->getDoctrine()->getManager();

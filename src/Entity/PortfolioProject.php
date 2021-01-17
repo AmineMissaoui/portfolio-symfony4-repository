@@ -57,6 +57,7 @@ class PortfolioProject
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank(message="Champ invalide !")
      */
     private $creationDate;
 
